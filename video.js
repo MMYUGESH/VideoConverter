@@ -3,7 +3,8 @@ const app = express();
 const fileUpload = require("express-fileupload");
 const ffmpeg = require("fluent-ffmpeg");
 const fs = require("fs");
-
+require("dotenv").config();
+const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //to upload the selected file to dir
@@ -70,4 +71,4 @@ app.post("/convert", (req, res) => {
         .saveToFile(__dirname + fileName);
 })
 
-app.listen(3000, () => console.log("started"))
+app.listen(port, () => console.log("started"))
